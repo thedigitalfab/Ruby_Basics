@@ -86,18 +86,14 @@ puts "il y'a #{counter} _ dans l'ensemble des handle"
 # Trie la liste de handle par ordre alphabétique.
 list_tmp = list_journalist.dup
 list_tmp.sort_by!{ |word| word.downcase}
-list_tmp.each do |n|
-    print "#{n}, "
-end
 puts ""
+puts "la liste triée par ordre alphabetique: #{list_tmp}"
 
 # Quels sont les 50 handles les plus courts de ce array ?
 list_tmp = list_journalist.dup
 list_tmp.sort_by!{ |word| word.length}
-for i in 0..49 do
-    print "#{list_tmp[i]}, "
-end
 puts ""
+puts "les 50 handles les plus courts sont: #{list_tmp[0..49]}"
 
 # # Quelle est la position dans l'array de la personne @epenser ?
 puts "l'index de @epenser est: #{list_journalist.index("@epenser")}"
