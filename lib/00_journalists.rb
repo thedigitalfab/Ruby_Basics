@@ -10,23 +10,28 @@ class String
             return 0
         end
     end
-end
 
-# has_substring?(str,sub): Test si la chaine de caracteres str contient la chaine de caracteres sub
-def has_substring?(str,sub)
-    if (str.downcase).include?(sub.downcase) == true
-        return 1
-    else
-        return 0
+    # has_substring(sub): Test si la chaine de caractere contient la chaine de caractere "sub"
+    def has_substring(sub)
+        if (self.downcase).include?(sub.downcase) == true
+            return 1
+        else
+            return 0
+        end
     end
-end
 
-# has_upper?(str,sub): Test si la chaine de caracteres str contient une majuscule
-def has_upper?(str)
-    if (str).match?(/[A-Z]/) == true
-        return 1
-    else
-        return 0
+    # has_upper(sub): Test si la chaine de caracteres str contient une majuscule
+    def has_upper
+        if self.match?(/[A-Z]/) == true
+            return 1
+        else
+            return 0
+        end
+    end
+
+    # count_char(char): compte le nombre d'occurence du caractere "char" dans la chaine de caracteres
+    def count_char(char)
+        return self.count(char)
     end
 end
 
@@ -52,28 +57,28 @@ puts "#{counter} handle contiennent un numéro"
 # Combien d'handle contiennent les 4 lettres du prénom "Aude" à la suite (sans prendre en compte les majuscules) ?
 counter = 0
 list_journalist.each do |n|
-    counter += has_substring?(n,"Aude")
+    counter += n.has_substring("Aude")
 end
 puts "#{counter} handle contiennent Aude"
 
 # Combien commencent par une majuscule (première lettre juste après le @) ?
 counter = 0
 list_journalist.each do |n|
-    counter += has_upper?(n.slice(1))
+    counter += n.slice(1).has_upper
 end
 puts "#{counter} handle commencent par une majuscule"
 
 # Combien contiennent au moins une majuscule ?
 counter = 0
 list_journalist.each do |n|
-    counter += has_upper?(n)
+    counter += n.has_upper
 end
 puts "#{counter} handle contiennent au moins une majuscule"
 
 # Combien y a-t-il de underscore _ dans tous les pseudos confondus ?
 counter = 0
 list_journalist.each do |n|
-    counter += has_char?(n,"_")
+    counter += n.count_char("_")
 end
 puts "il y'a #{counter} _ dans l'ensemble des handle"
 
@@ -81,16 +86,17 @@ puts "il y'a #{counter} _ dans l'ensemble des handle"
 list_tmp = list_journalist.dup
 list_tmp.sort_by!{ |word| word.downcase}
 list_tmp.each do |n|
-    #puts n
+    print "#{n}, "
 end
+puts ""
 
 # Quels sont les 50 handles les plus courts de ce array ?
 list_tmp = list_journalist.dup
 list_tmp.sort_by!{ |word| word.length}
 for i in 0..49 do
-    #puts list_tmp[i]
-    counter +=1
+    print "#{list_tmp[i]}, "
 end
+puts ""
 
 # # Quelle est la position dans l'array de la personne @epenser ?
 puts "l'index de @epenser est: #{list_journalist.index("@epenser")}"
