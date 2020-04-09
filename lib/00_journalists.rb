@@ -1,12 +1,18 @@
-
-def has_digits?(str)
-    if str.count("0-9") > 0 == true
-        return 1
-    else
-        return 0
+##########################
+# Definition des methodes:
+##########################
+class String
+    # has_digit: Test si la chaine de caracteres contient des chiffres
+    def has_digit
+        if self.count("0-9") > 0 == true
+            return 1
+        else
+            return 0
+        end
     end
 end
 
+# has_substring?(str,sub): Test si la chaine de caracteres str contient la chaine de caracteres sub
 def has_substring?(str,sub)
     if (str.downcase).include?(sub.downcase) == true
         return 1
@@ -15,6 +21,7 @@ def has_substring?(str,sub)
     end
 end
 
+# has_upper?(str,sub): Test si la chaine de caracteres str contient une majuscule
 def has_upper?(str)
     if (str).match?(/[A-Z]/) == true
         return 1
@@ -23,6 +30,7 @@ def has_upper?(str)
     end
 end
 
+# has_char?(str,char): Test si la chaine de caracteres str contient le caractere char
 def has_char?(str,char)
     return str.count(char)
 end
@@ -31,49 +39,59 @@ list_journalist = ["@jcunniet","@PaulLampon","@Aziliz31","@ssoumier","@marionsou
 
 # Combien y a-t-il de journalistes dans ce array ?
 puts "il y'a #{list_journalist.size} journalistes dans le tableau"
+
 # Combien d'handle contiennent un numéro ?
 counter = 0
 list_journalist.each do |n|
-    counter += has_digits?(n)
+    counter += n.has_digit
+    #counter += has_digits?(n)
+    #puts n.has_digit
 end
 puts "#{counter} handle contiennent un numéro"
+
 # Combien d'handle contiennent les 4 lettres du prénom "Aude" à la suite (sans prendre en compte les majuscules) ?
 counter = 0
 list_journalist.each do |n|
     counter += has_substring?(n,"Aude")
 end
 puts "#{counter} handle contiennent Aude"
+
 # Combien commencent par une majuscule (première lettre juste après le @) ?
 counter = 0
 list_journalist.each do |n|
     counter += has_upper?(n.slice(1))
 end
 puts "#{counter} handle commencent par une majuscule"
+
 # Combien contiennent au moins une majuscule ?
 counter = 0
 list_journalist.each do |n|
     counter += has_upper?(n)
 end
 puts "#{counter} handle contiennent au moins une majuscule"
+
 # Combien y a-t-il de underscore _ dans tous les pseudos confondus ?
 counter = 0
 list_journalist.each do |n|
     counter += has_char?(n,"_")
 end
 puts "il y'a #{counter} _ dans l'ensemble des handle"
+
 # Trie la liste de handle par ordre alphabétique.
 list_tmp = list_journalist.dup
 list_tmp.sort_by!{ |word| word.downcase}
 list_tmp.each do |n|
-    puts n
+    #puts n
 end
+
 # Quels sont les 50 handles les plus courts de ce array ?
 list_tmp = list_journalist.dup
 list_tmp.sort_by!{ |word| word.length}
 for i in 0..49 do
-    puts list_tmp[i]
-    puts counter +=1
+    #puts list_tmp[i]
+    counter +=1
 end
+
 # # Quelle est la position dans l'array de la personne @epenser ?
 puts "l'index de @epenser est: #{list_journalist.index("@epenser")}"
 puts "la position de @epenser est: #{list_journalist.index("@epenser")+1}"

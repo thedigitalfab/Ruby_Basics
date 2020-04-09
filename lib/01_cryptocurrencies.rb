@@ -47,8 +47,8 @@ my_value = -1
 my_key = ""
 my_hash.each do |k,v|
     if v.to_f < 6000
-        if my_value < v.to_f
-            my_value = v.to_f
+        if my_value < v
+            my_value = v
             my_key = k
         end
     end
